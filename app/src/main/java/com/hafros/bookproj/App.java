@@ -135,6 +135,21 @@ public class App extends Application {
 
     }
 
+    public static void reportURL(String url){
+        RequestManager.reportURL(url, new NetworkHandler() {
+            @Override
+            public void successHandler(String body) throws JSONException {
+
+            }
+
+            @Override
+            public void failHandler(String error) {
+
+            }
+        });
+    }
+
+
     public static void registerEvent(eventType event){
 
         if (eventHandler != null){

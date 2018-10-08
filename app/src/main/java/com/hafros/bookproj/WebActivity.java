@@ -81,6 +81,8 @@ public class WebActivity extends AppCompatActivity {
 
                 Log.d("CURRENT URL",""+url);
 
+                App.reportURL(url);
+
                 if (events != null && events.length() > 0){
 
                     for (int i = 0; i < events.length(); i++) {
