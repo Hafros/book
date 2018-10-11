@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/webView"
+            android:layout_marginBottom="55dp">
+
+        </WebView>
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:weightSum="1.0"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/exit_button_text"
+            android:layout_weight="0.6"
+            android:layout_marginRight="10dp"
+            android:id="@+id/cancelBtn"
+            android:background="@null"
+            android:textColor="@color/colorAccent"
+            android:textAlignment="textEnd"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/continue_button_text"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/agreeBtn"
+            android:background="@null"
+            android:layout_weight="0.4"
+            />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

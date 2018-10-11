@@ -21,6 +21,8 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.hafros.alert.CookiesConsentDialog;
+import com.hafros.alert.CookiesConsentOverlay;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -60,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        new CookiesConsentDialog(MainActivity.this)
+                .setPolicyUrl("https://github.com/Carlosph/CookiesConsent")
+                .showIfApplies();
 
         FacebookSdk.setApplicationId("332276177350526");
 

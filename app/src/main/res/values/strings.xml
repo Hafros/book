@@ -3,4 +3,14 @@
     <string name="mainURL">http://ppc.mopatech.com/data.json</string>
     <string name="facebook_app_id">332276177350526</string>
     <string name="fb_login_protocol_scheme">fb332276177350526</string>
+
+    <string name="dialog_title">Please, accept our policies in order to use this app.</string>
+    <string name="dialog_text">%1$s</string>
+    <string name="privacy_policy">Click here to read our policies</string>
+    <string name="exit_button_text">Exit App</string>
+    <string name="continue_button_text">Agree and continue</string>
+
+    <string name="privacy_url">http://myappterms.com/reader.php?lang=en&amp;id=1</string>
+
+    <string name="html_link" translatable="false">&lt;a href=\'%1$s\'>%2$s&lt;/a></string>
 </resources>
