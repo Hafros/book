@@ -42,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
     private DataAdapter adapter;
 
-    private JSONArray items;
+    private float end_height;
+
+    //private JSONArray items;
 
     AppEventsLogger logger;
 
@@ -211,6 +213,8 @@ public class MainActivity extends AppCompatActivity {
 
         float end = width/ratio;
 
+
+        end_height = end;
 //        Log.d("WIDTH = ",""+width);
 //
 //        Log.d("HEIGHT",""+ratio);
@@ -311,6 +315,11 @@ public class MainActivity extends AppCompatActivity {
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+
+                DataAdapter adapter = new DataAdapter(mData, end_height);
+
+                recyclerView.setAdapter(adapter);
+
                 adapter.notifyDataSetChanged();
             }
         });
@@ -322,24 +331,25 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             JSONArray jsonArray = new JSONArray(App.getCache().getAsString("configuration"));
-            items = jsonArray;
+            //items = jsonArray;
+
 
             for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject object = items.getJSONObject(i);
+                JSONObject object = jsonArray.getJSONObject(i);
 
                 if (!object.has("browser")){
-                    DataModel model = new DataModel(items.getJSONObject(i));
+                    DataModel model = new DataModel(jsonArray.getJSONObject(i));
                     mData.add(model);
                 }
                 else{
-                    items.remove(i);
+                   // items.remove(i);
                     App.setContainer(object.getBoolean("browser"));
                 }
 
 
             }
 
-            Log.d("ITEMS", ""+items.length());
+            Log.d("ITEMS", ""+jsonArray.length());
 
             updateAdapter();
         } catch (JSONException e) {

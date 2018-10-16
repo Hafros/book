@@ -23,6 +23,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
         this.height = height;
     }
 
+    public void clear(){
+        mData.clear();
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
