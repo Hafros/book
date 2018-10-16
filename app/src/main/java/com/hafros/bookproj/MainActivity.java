@@ -1,6 +1,7 @@
 package com.hafros.bookproj;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,6 +27,7 @@ import com.hafros.alert.CookiesConsentOverlay;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -229,10 +231,26 @@ public class MainActivity extends AppCompatActivity {
 //
 //                }
 //                else{
-                    Intent intent = new Intent(MainActivity.this, WebActivity.class);
+
+                    if (App.browser){
+
+                        Intent intent = new Intent(MainActivity.this, Preview.class);
 //
-                    intent.putExtra("url", ""+mData.get(position).url);
-                    startActivity(intent);
+                        intent.putExtra("url", ""+mData.get(position).url);
+                        intent.putExtra("img", ""+mData.get(position).image);
+                        startActivity(intent);
+
+//                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mData.get(position).url));
+//                        startActivity(browserIntent);
+                    }
+                    else{
+                        Intent intent = new Intent(MainActivity.this, WebActivity.class);
+//
+                        intent.putExtra("url", ""+mData.get(position).url);
+                        startActivity(intent);
+                    }
+
+
 //                }
 
             }
@@ -306,9 +324,19 @@ public class MainActivity extends AppCompatActivity {
             JSONArray jsonArray = new JSONArray(App.getCache().getAsString("configuration"));
             items = jsonArray;
 
-            for (int i = 0; i < items.length(); i++) {
-                DataModel model = new DataModel(items.getJSONObject(i));
-                mData.add(model);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject object = items.getJSONObject(i);
+
+                if (!object.has("browser")){
+                    DataModel model = new DataModel(items.getJSONObject(i));
+                    mData.add(model);
+                }
+                else{
+                    items.remove(i);
+                    App.setContainer(object.getBoolean("browser"));
+                }
+
+
             }
 
             Log.d("ITEMS", ""+items.length());

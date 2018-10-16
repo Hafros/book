@@ -1,22 +1,49 @@
 [{
-  "name": "Circus",
-  "url": "https://ads.gaming1.com/redirect.aspx?pid=4445&bid=2138",
-  "image": "http://ppc.mopatech.com/Circus.jpg",
-  "events": {
-
-  }
+  "browser": "false"
 },
   {
+    "name": "Vivelasuertia",
+    "url": "https://ads.vivelasuerte.es/redirect.aspx?pid=5384&bid=4169&var5=mobile",
+    "image": "http://ppc.mopatech.com/VivelaSuerte.png",
+    "events": {
+
+    }
+  },
+  {
+    "name": "Circus",
+    "url": "https://ads.gaming1.com/redirect.aspx?pid=4445&bid=4242&var1=mobile_app",
+    "image": "http://ppc.mopatech.com/Circus.jpg",
+    "events": {
+
+    }
+  },
+  {
     "name": "Paston",
-    "url": "http://ref.trknow.org/c/7a8b567d6d767356?",
+    "url": "https://aff.paston.es/redirect.aspx?pid=2254&bid=2673&SUBID=mobile_app",
     "image": "http://ppc.mopatech.com/Paston.jpg",
     "events": {
 
     }
   },
   {
+    "name": "Betway",
+    "url": "http://betway.com/?s=bw201432&mid=18535",
+    "image": "http://ppc.mopatech.com/betway.png",
+    "events": {
+
+    }
+  },
+  {
+    "name": "Marathon",
+    "url": "https://marathoncommunity.win/click/general?bid=35383_26624_9715_false&siteid=",
+    "image": "http://ppc.mopatech.com/Marathon.png",
+    "events": {
+
+    }
+  },
+  {
     "name": "William Hill",
-    "url": "https://ads.vivelasuerte.es/redirect.aspx?pid=5384&bid=3837",
+    "url": "https://ads.williamhill.es/redirect.aspx?pid=191753635&bid=1487416816&var5=mobile_app",
     "image": "http://ppc.mopatech.com/WilliamHILL.jpg",
     "events": {
 
@@ -24,7 +51,7 @@
   },
   {
     "name": "Sportium",
-    "url": "http://ref.trknow.org/c/2bfe2b23016e89b0?",
+    "url": "http://online.sportium.es/promoRedirect?member=intelbetes&campaign=DEFAULT&channel=DEFAULT&zone=15630281&lp=15630277&var1=mobile",
     "image": "http://ppc.mopatech.com/Sportium.jpg",
     "events": {
 
@@ -32,8 +59,16 @@
   },
   {
     "name": "Luckia",
-    "url": "http://ads.redluckia.com/redirect.aspx?pid=4030&bid=1698",
+    "url": "http://ads.redluckia.com/redirect.aspx?pid=4030&bid=1804&SUBID=mobile",
     "image": "http://ppc.mopatech.com/Luckia.jpg",
+    "events": {
+
+    }
+  },
+  {
+    "name": "Kirolbet",
+    "url": "https://legalbet.es/go/kirolbet/?label=index-page-top&user_id=_5bb5afbbd0702",
+    "image": "http://ppc.mopatech.com/Kirolbet.png",
     "events": {
 
     }

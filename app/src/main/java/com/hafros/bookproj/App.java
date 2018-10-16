@@ -26,10 +26,17 @@ public class App extends Application {
 
     private static Context context;
 
+    public static boolean browser = true;
+
     interface needUpdateHandler{
         void callback();
     }
 
+    public static void setContainer(boolean value){
+
+        browser = value;
+
+    }
 
 
 
