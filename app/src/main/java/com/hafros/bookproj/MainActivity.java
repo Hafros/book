@@ -2,6 +2,7 @@ package com.hafros.bookproj;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -242,6 +243,14 @@ public class MainActivity extends AppCompatActivity {
 //
                         intent.putExtra("url", ""+mData.get(position).url);
                         intent.putExtra("img", ""+mData.get(position).image);
+
+
+
+                        if (mData.get(position).hasDescription()){
+                            Log.d("HAS","DESCRIPTION");
+                            intent.putExtra("description",""+mData.get(position).description);
+                        }
+
                         startActivity(intent);
 
 //                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mData.get(position).url));
@@ -263,7 +272,14 @@ public class MainActivity extends AppCompatActivity {
         updateItems();
 
 
-        checkConfiguration();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                checkConfiguration();
+            }
+        }, 1000);
+        //
 
 
     }
@@ -297,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 catch (JSONException e){
-
+                    e.printStackTrace();
                 }
 
             }
@@ -328,6 +344,8 @@ public class MainActivity extends AppCompatActivity {
     private void updateItems(){
 
         mData.clear();
+
+        Log.d("UPDATE","ITEMS");
 
         try {
             JSONArray jsonArray = new JSONArray(App.getCache().getAsString("configuration"));

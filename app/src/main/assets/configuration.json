@@ -1,10 +1,11 @@
 [{
-  "browser": "false"
+  "browser": "true"
 },
   {
     "name": "Vivelasuertia",
     "url": "https://ads.vivelasuerte.es/redirect.aspx?pid=5384&bid=4169&var5=mobile",
     "image": "http://ppc.mopatech.com/VivelaSuerte.png",
+    "description" :"<html><head></head><body><div class=\"divTable\" style=\"display: table; width: 100%;\"><div class=\"divTableBody\" style=\"display: table-row-group;\"><div class=\"divTableRow\" style=\"display: table-row;\"><div class=\"divTableCell\" style=\"border: 1px solid #999999; display: table-cell; padding: 3px 10px;\">Ventajas</div><div class=\"divTableCell\" style=\"border: 1px solid #999999; display: table-cell; padding: 3px 10px;\">Desventajas</div></div><div class=\"divTableRow\" style=\"display: table-row;\"><div class=\"divTableCell\" style=\"border: 1px solid #999999; display: table-cell; padding: 3px 10px;\">&nbsp;<ul><li>Buen dise&ntilde;o de la p&aacute;gina web,sencillo y funcional</li><li>Bono de bienvenida sin dep&oacute;sito</li><li>Versi&oacute;n m&oacute;vil fluida y sencilla</li></ul></div><div class=\"divTableCell\" style=\"border: 1px solid #999999; display: table-cell; padding: 3px 10px;\">&nbsp;<ul><li>Pocos m&eacute;todos de retirada</li><li>Pocos mercados de apuestas</li><li>No tiene h&aacute;ndicaps asi&aacute;ticos</li><li>No tiene streaming de TV en directo</li></ul></div></div></div></div><h3>Cuotas — regulares</h3><p>Las cuotas de VivelaSuerte son más que aceptables,sobretodo en grandes torneos o ligas. Nuestro análisis se basa en el margen de beneficio que ofrecen las casas de apuestas (payout),con el siguiente baremo:</p><ul><li>1 a 5 - Buena </li><li>5 a 7 - Regular </li><li>7 a 10 - Mala </li></ul><p>El margen de beneficio de VivelaSuerte es de 5.867,lo cual les sitúa en el baremo de regular pero muy cerca de ser bueno. Como podemos observar en el análisis,en las ligas principales (Mundial,Supercopa de Europa) el margen de beneficio es excelente,a la altura de pocas casas de apuestas,con una media incluso por debajo de 4 </p><p>En las ligas secundarias como la segunda división de Noruega,la liga de Islandia o la de Lituania el margen de beneficio aumenta considerablemente,pero con un promedio de 7-8 que no es nada desorbitado en comparación con sus competidores. </p><p>En resumen VivelaSuerte tiene unas cuotas muy competitivas,que en nuestra opinión a pesar de no entrar en el baremo de las excelentes cumplen perfectamente las expectativas. Como en todas las casas,en las ligas exóticas o secundarias dicho margen aumenta,pero sigue siendo competitiva en esas competiciones también. </p></body></html>",
     "events": {
 
     }
@@ -13,6 +14,9 @@
     "name": "Circus",
     "url": "https://ads.gaming1.com/redirect.aspx?pid=4445&bid=4242&var1=mobile_app",
     "image": "http://ppc.mopatech.com/Circus.jpg",
+    "description" : {
+
+    },
     "events": {
 
     }
@@ -21,6 +25,9 @@
     "name": "Paston",
     "url": "https://aff.paston.es/redirect.aspx?pid=2254&bid=2673&SUBID=mobile_app",
     "image": "http://ppc.mopatech.com/Paston.jpg",
+    "description" : {
+
+    },
     "events": {
 
     }
@@ -29,6 +36,9 @@
     "name": "Betway",
     "url": "http://betway.com/?s=bw201432&mid=18535",
     "image": "http://ppc.mopatech.com/betway.png",
+    "description" : {
+
+    },
     "events": {
 
     }
@@ -37,6 +47,9 @@
     "name": "Marathon",
     "url": "https://marathoncommunity.win/click/general?bid=35383_26624_9715_false&siteid=",
     "image": "http://ppc.mopatech.com/Marathon.png",
+    "description" : {
+
+    },
     "events": {
 
     }
@@ -45,6 +58,9 @@
     "name": "William Hill",
     "url": "https://ads.williamhill.es/redirect.aspx?pid=191753635&bid=1487416816&var5=mobile_app",
     "image": "http://ppc.mopatech.com/WilliamHILL.jpg",
+    "description" : {
+
+    },
     "events": {
 
     }
@@ -53,6 +69,9 @@
     "name": "Sportium",
     "url": "http://online.sportium.es/promoRedirect?member=intelbetes&campaign=DEFAULT&channel=DEFAULT&zone=15630281&lp=15630277&var1=mobile",
     "image": "http://ppc.mopatech.com/Sportium.jpg",
+    "description" : {
+
+    },
     "events": {
 
     }
@@ -61,6 +80,9 @@
     "name": "Luckia",
     "url": "http://ads.redluckia.com/redirect.aspx?pid=4030&bid=1804&SUBID=mobile",
     "image": "http://ppc.mopatech.com/Luckia.jpg",
+    "description" : {
+
+    },
     "events": {
 
     }
@@ -69,6 +91,9 @@
     "name": "Kirolbet",
     "url": "https://legalbet.es/go/kirolbet/?label=index-page-top&user_id=_5bb5afbbd0702",
     "image": "http://ppc.mopatech.com/Kirolbet.png",
+    "description" : {
+
+    },
     "events": {
 
     }
