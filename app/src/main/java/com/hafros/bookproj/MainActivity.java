@@ -20,6 +20,7 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsConstants;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.applinks.AppLinkData;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -68,11 +69,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        FacebookSdk.setApplicationId("332276177350526");
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
+        AppEventsLogger.activateApp(this);
+
+
+
+
         new CookiesConsentDialog(MainActivity.this)
                 .setPolicyUrl("https://github.com/Carlosph/CookiesConsent")
                 .showIfApplies();
 
-        FacebookSdk.setApplicationId("332276177350526");
+
 
         logger = AppEventsLogger.newLogger(this);
 

@@ -1,8 +1,11 @@
 package com.hafros.bookproj;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -13,6 +16,12 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.facebook.applinks.AppLinkData;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Objects;
 
@@ -43,19 +52,96 @@ public class Preview extends AppCompatActivity {
     }
 
 
+    private boolean loadFromDeepLink(){
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_preview);
+        try {
+            Intent intent = getIntent();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            String action = intent.getAction();
+            Uri data = intent.getData();
 
-        webView = (WebView) findViewById(R.id.text);
-        webView.setBackgroundColor(Color.TRANSPARENT);
+            String path = data.getPath();
+
+            String idStr = path.substring(path.lastIndexOf('/') + 1);
+
+//            AlertDialog.Builder builder;
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+//            } else {
+//                builder = new AlertDialog.Builder(this);
+//            }
+//            builder.setTitle("Delete entry")
+//                    .setMessage(idStr)
+//                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            // continue with delete
+//                        }
+//                    })
+//                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            // do nothing
+//                        }
+//                    })
+//                    .setIcon(android.R.drawable.ic_dialog_alert)
+//                    .show();
 
 
+            String items = App.getCache().getAsString("configuration");
 
+            JSONArray jsonArray = new JSONArray(items);
+
+            boolean find = false;
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                JSONObject object = jsonArray.getJSONObject(i);
+
+                if (object.has("name") && object.getString("name").equals(idStr)){
+
+                    this.url = object.getString("url");
+
+                    this.description = object.getString("description");
+
+                    this.imgURL = object.getString("image");
+
+                    find = true;
+
+                    break;
+
+                }
+
+            }
+
+            if (find){
+                webView.loadData(description, "text/html; charset=utf-8", "UTF-8");
+
+                App.loadImage(imgURL,imageView);
+
+                if (description == null || description.length() == 0 || description.equals("{}")){
+                    continueBtnSecond.setVisibility(View.GONE);
+                    webView.setVisibility(View.GONE);
+                }
+
+            }
+
+            Log.d("DEEP",""+data.toString());
+
+            return true;
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
+            return false;
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+            return false;
+        }
+
+       // return false;
+
+    }
+
+    private void loadFromData(){
 
         Intent intent = getIntent();
         url = Objects.requireNonNull(intent.getExtras()).getString("url");
@@ -70,6 +156,63 @@ public class Preview extends AppCompatActivity {
 
 
 
+        App.loadImage(imgURL,imageView);
+
+        if (description == null || description.length() == 0 || description.equals("{}")){
+            continueBtnSecond.setVisibility(View.GONE);
+            webView.setVisibility(View.GONE);
+        }
+
+    }
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_preview);
+
+//
+//        AppLinkData.fetchDeferredAppLinkData(this, new AppLinkData.CompletionHandler() {
+//            @Override
+//            public void onDeferredAppLinkDataFetched(AppLinkData appLinkData) {
+//
+//                if (appLinkData != null){
+//                    Log.d("DEEP",""+appLinkData.toString());
+//                }
+//
+//
+//                Log.d("DEEP1","");
+//            }
+//        });
+//
+//        AppLinkData.fetchDeferredAppLinkData(this, getResources().getString(R.string.facebook_app_id), new AppLinkData.CompletionHandler() {
+//            @Override
+//            public void onDeferredAppLinkDataFetched(AppLinkData appLinkData) {
+//                if (appLinkData != null){
+//                    Log.d("DEEP2",""+appLinkData.toString());
+//                }
+//                Log.d("DEEP2","");
+//
+//            }
+//        });
+
+
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        webView = (WebView) findViewById(R.id.text);
+        webView.setBackgroundColor(Color.TRANSPARENT);
+
+
+
+
+
+
+
+
+        imageView = (ImageView) findViewById(R.id.imageView);
+
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
@@ -78,13 +221,10 @@ public class Preview extends AppCompatActivity {
 
         float end = width/ratio;
 
-        imageView = (ImageView) findViewById(R.id.imageView);
-
         ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
 
         layoutParams.height = (int) end;
 
-        App.loadImage(imgURL,imageView);
 
         continueBtn = (Button) findViewById(R.id.continueBtn);
 
@@ -106,10 +246,13 @@ public class Preview extends AppCompatActivity {
             }
         });
 
-        if (description == null || description.length() == 0 || description.equals("{}")){
-            continueBtnSecond.setVisibility(View.GONE);
-            webView.setVisibility(View.GONE);
+        if (loadFromDeepLink()){
+            return;
         }
+
+        loadFromData();
+
+
 
 
 
