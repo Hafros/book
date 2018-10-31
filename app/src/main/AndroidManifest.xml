@@ -56,8 +56,8 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
 
-                <data android:scheme="hafrostest"
-                    android:host="name.test"
+                <data android:scheme="bookproj"
+                    android:host="booking.app"
                     android:pathPrefix="/"
                     />
 
