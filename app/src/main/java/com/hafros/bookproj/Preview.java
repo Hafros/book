@@ -1,11 +1,9 @@
 package com.hafros.bookproj;
 
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -14,10 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.facebook.applinks.AppLinkData;
+import com.hafros.bookproj.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,13 +27,13 @@ import java.util.Objects;
 public class Preview extends AppCompatActivity {
 
     ImageView imageView;
-    Button continueBtn;
-    Button continueBtnSecond;
     WebView webView;
 
     String url;
     String imgURL;
     String description;
+
+    Context mContext;
 
     private boolean hasKey(Intent intent, String key){
 
@@ -118,7 +117,6 @@ public class Preview extends AppCompatActivity {
                 App.loadImage(imgURL,imageView);
 
                 if (description == null || description.length() == 0 || description.equals("{}")){
-                    continueBtnSecond.setVisibility(View.GONE);
                     webView.setVisibility(View.GONE);
                 }
 
@@ -137,7 +135,7 @@ public class Preview extends AppCompatActivity {
             return false;
         }
 
-       // return false;
+        // return false;
 
     }
 
@@ -159,7 +157,6 @@ public class Preview extends AppCompatActivity {
         App.loadImage(imgURL,imageView);
 
         if (description == null || description.length() == 0 || description.equals("{}")){
-            continueBtnSecond.setVisibility(View.GONE);
             webView.setVisibility(View.GONE);
         }
 
@@ -171,6 +168,8 @@ public class Preview extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preview);
+
+        mContext = this;
 
 //
 //        AppLinkData.fetchDeferredAppLinkData(this, new AppLinkData.CompletionHandler() {
@@ -205,6 +204,34 @@ public class Preview extends AppCompatActivity {
         webView.setBackgroundColor(Color.TRANSPARENT);
 
 
+        if (isBrowser()){
+
+            webView.getSettings().setJavaScriptEnabled(true);
+            webView.getSettings().setLoadsImagesAutomatically(true);
+
+            webView.setWebViewClient(new WebViewClient() {
+
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String weburl) {
+
+                    try {
+
+                        Intent intent = new Intent(Preview.this, WebActivity.class);
+//
+                        intent.putExtra("url", ""+weburl);
+                        startActivity(intent);
+
+                        return true;
+                        // do whatever you want to do on a web link click
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    return true;
+                }
+
+            });
+        }
 
 
 
@@ -217,34 +244,13 @@ public class Preview extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
 
-        float ratio = 16.0f/9.0f;
+        float ratio = 16.0f/6.0f;
 
         float end = width/ratio;
 
         ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
 
         layoutParams.height = (int) end;
-
-
-        continueBtn = (Button) findViewById(R.id.continueBtn);
-
-        continueBtnSecond = (Button) findViewById(R.id.continueBtnSecond);
-
-        continueBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(browserIntent);
-            }
-        });
-
-        continueBtnSecond.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(browserIntent);
-            }
-        });
 
         if (loadFromDeepLink()){
             return;
@@ -273,6 +279,31 @@ public class Preview extends AppCompatActivity {
                 return false;
         }
     }
+
+    private boolean isBrowser(){
+        try {
+            JSONArray jsonArray = new JSONArray(App.getCache().getAsString("configuration"));
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject object = jsonArray.getJSONObject(i);
+
+                if (object.has("browser")){
+                    return object.getBoolean("browser");
+
+                }
+
+
+
+            }
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+            return App.browser;
+        }
+
+        return App.browser;
+    }
+
 
     @Override
     public void onBackPressed()

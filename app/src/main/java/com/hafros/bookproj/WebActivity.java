@@ -20,6 +20,36 @@ public class WebActivity extends AppCompatActivity {
     String url;
     JSONArray events = null;
 
+    private void loadEvents(JSONArray jsonObject){
+        for (int i = 0; i < jsonObject.length(); i++) {
+
+            try {
+                JSONObject object = jsonObject.getJSONObject(i);
+
+
+
+                if (object.has("url")){
+
+                    Log.d("CURRENT S",""+object.getString("url"));
+
+                    if (url.equals(object.getString("url"))){
+
+                        events = object.getJSONArray("events");
+                        break;
+
+                    }
+
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,33 +69,9 @@ public class WebActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        for (int i = 0; i < jsonObject.length(); i++) {
+        loadEvents(jsonObject);
 
-            try {
-                JSONObject object = jsonObject.getJSONObject(i);
-
-
-
-                if (object.has("url")){
-
-                    Log.d("CURRENT S",""+object.getString("url"));
-
-                    if (url.equals(object.getString("url"))){
-
-                        events = object.getJSONArray("events");
-
-                    }
-
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-
-
-        }
-
+        Log.d("WEB URL",""+url);
 
         webView = (WebView) findViewById(R.id.webView);
 
