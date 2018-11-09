@@ -51,4 +51,6 @@ dependencies {
     implementation 'org.afinal.simplecache:a-simple-cache:1.0'
 
     implementation 'com.onesignal:OneSignal:[3.9.1, 3.99.99]'
+
+    implementation 'io.github.ashaforostov:ProgressLayoutTest:1.2.31'
 }
