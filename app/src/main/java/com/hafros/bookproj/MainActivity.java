@@ -247,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //                else{
 
-                    if (App.browser){
+                    if (!App.browser){
 
                         Intent intent = new Intent(MainActivity.this, Preview.class);
 //

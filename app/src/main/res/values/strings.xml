@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">BookProj</string>
-    <string name="mainURL">http://ppc.mopatech.com/data.json</string>
+    <string name="mainURL">http://depbet.com/data.json</string>
     <string name="facebook_app_id">1933422600038873</string>
     <string name="fb_login_protocol_scheme">fb332276177350526</string>
 

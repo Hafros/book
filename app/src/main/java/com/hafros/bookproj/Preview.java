@@ -205,7 +205,7 @@ public class Preview extends AppCompatActivity {
         webView.setBackgroundColor(Color.TRANSPARENT);
 
 
-        if (isBrowser()){
+        if (!isBrowser()){
 
 
 
